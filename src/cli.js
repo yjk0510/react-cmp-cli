@@ -13,6 +13,7 @@ function requestCmpName(options) {
 export async function cli(args) {
     let options = requestCmpName(args);
     await createProject(options);
+    process.exit()
 }
 /**
  * 0.输入组件名

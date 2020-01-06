@@ -73,6 +73,7 @@ export async function createProject(options) {
                 title: "Start project",
                 task: () => startProject(options)
             }
+            
         ],
         {
             exitOnError: false
