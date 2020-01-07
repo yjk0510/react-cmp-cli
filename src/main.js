@@ -3,11 +3,8 @@ import fs from "fs";
 import Listr from "listr";
 import ncp from "ncp";
 import path from "path";
-import execa from "execa";
 import { promisify } from "util";
 var URL = require("url").URL;
-import { series } from "async";
-const { exec } = require("child_process");
 const { projectInstall } = require("pkg-install");
 
 const access = promisify(fs.access);
@@ -25,20 +22,7 @@ async function installDeps(options) {
     });
     console.log(stdout);
 }
-function startProject(options) {
-    // 在当前目录下的scripts文件夹里执行hexo g命令
-    exec(
-        "npm start",
-        { cwd: path.join(process.cwd(), options.cmpName) },
-        (err, stdout, stderr) => {
-            if (err) {
-                console.log(err);
-                return;
-            }
-            console.log(`stdout: ${stdout}`);
-        }
-    );
-}
+
 export async function createProject(options) {
     options = {
         ...options,
@@ -68,10 +52,6 @@ export async function createProject(options) {
             {
                 title: "Install dependencies",
                 task: () => installDeps(options)
-            },
-            {
-                title: "Start project",
-                task: () => startProject(options)
             }
             
         ],
@@ -82,5 +62,8 @@ export async function createProject(options) {
 
     await tasks.run();
     console.log("%s Project ready", chalk.green.bold("DONE"));
+    console.log("please run")
+    console.log(`    cd ${options.cmpName}`)
+    console.log('    npm start')
     return true;
 }
