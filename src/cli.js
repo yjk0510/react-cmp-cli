@@ -1,7 +1,5 @@
-import arg from "arg";
-import inquirer from "inquirer";
-import { createProject } from "./main";
 import readlineSync from "readline-sync";
+import { createProject } from "./main";
 function requestCmpName(options) {
     const cmpName = readlineSync.question("请输入项目名称? ");
     return {
