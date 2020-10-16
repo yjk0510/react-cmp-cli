@@ -1,0 +1,3 @@
+[submodule "templates/cmp"]
+	path = templates/cmp
+	url = https://github.com/yinjikai/react-cmp-template.git
